@@ -48,12 +48,16 @@ export const Portfolio = () => {
         img: "https://raw.githubusercontent.com/netology-code/ra16-homeworks/master/events-state/filter/img/place200x290_3.png",
         category: "Flayers"
       }]
-      const [selected, setSelected] = useState('All')
+      const [selected, setSelected] = useState('Websites')
       const [selectedProjects, setSelectedProjects] = useState(projects)
 
       const onSelectFilter = (filter) => {
-        setSelected(filter)
-        setSelectedProjects(projects.filter((project) => project.category == filter))
+        setSelected(filter.target.id)
+        setSelectedProjects(projects.filter((project) => {
+          if (filter.target.id == 'All') return true
+          return project.category == filter.target.id
+        }
+        ))
       }
   return (<div>
     <Toolbar filters = {filters} selected = {selected} onSelectFilter = {onSelectFilter}/>

@@ -6,7 +6,7 @@ export const Toolbar = ({filters, selected, onSelectFilter}) => {
     <div className="toolbar">
       {filters.map((filter) => (
         <li key={filter}>
-          <button onClick={onSelectFilter(filter)} className={filter == selected? "active" : "nonActive"}>{filter}</button>
+          <button onClick={onSelectFilter} id={filter} className={filter == selected? "active" : "nonActive"}>{filter}</button>
         </li>
       ))}
     </div>
