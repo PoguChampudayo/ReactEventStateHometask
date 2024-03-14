@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { CardsView } from '../CardsView/CardsView';
 import { ListView } from "../ListView/ListView";
-import 'material-icons/iconfont/material-icons.css';
+import { IconSwitch } from "../IconSwitch/IconSwitch";
+
 
 
 
@@ -9,7 +10,7 @@ import 'material-icons/iconfont/material-icons.css';
 
 export const Store = () => {
 
-    const [cardView, setCardView] = useState(true);
+    const [icon, setIcon] = useState("view_list");
     const products = [{
         name: "Nike Metcon 2",
         price: "130",
@@ -43,14 +44,18 @@ export const Store = () => {
       }];
 
     const onSwitch = () => {
-      setCardView(cardView => !cardView)
+      if (icon == "view_list") {
+        setIcon("view_module")
+      }
+      else {
+        setIcon("view_list")
+      }
     }
   return (
     <div>
-        <button onClick={onSwitch}><span className="material-icons">{cardView ? "view_list" : "view_module"}</span> 
-        </button>
+        <IconSwitch icon={icon} onSwitch={onSwitch}/> 
         <div>
-         {cardView ? <CardsView cards={products}/> : <ListView items={products}/>}
+         {icon == "view_list" ? <CardsView cards={products}/> : <ListView items={products}/>}
         </div>
     </div>
   )
